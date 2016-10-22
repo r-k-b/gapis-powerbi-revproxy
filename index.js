@@ -19,7 +19,10 @@ var server = http.createServer(function(req, res) {
   if (req.method === 'GET' || !req.headers.authorization) {
 
     res.writeHead(200, {"Content-Type": "application/json"});
-    res.end(JSON.stringify({answer:'hi.'}));
+    res.end(JSON.stringify({
+      answer:'hi.',
+      access_token:'nope.'
+    }, null, 2));
     return;
   }
 
