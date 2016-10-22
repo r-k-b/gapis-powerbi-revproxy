@@ -18,7 +18,7 @@ var proxy = httpProxy.createProxyServer({});
 var server = http.createServer(function(req, res) {
   // You can define here your custom logic to handle the request
   // and then proxy the request.
-  let cameFromMCode = !!req.headers['X-Request-Code-Source'];
+  let cameFromMCode = !!req.headers['x-request-code-source'];
 
   if (req.method === 'GET' || !cameFromMCode) {
     console.info('headers:', req.headers);
