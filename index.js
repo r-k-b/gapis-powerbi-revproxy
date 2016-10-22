@@ -1,6 +1,8 @@
 var http = require('http'),
     httpProxy = require('http-proxy');
 
+const port = process.env.PORT || 5050;
+
 //
 // Create a proxy server with custom application logic
 //
@@ -25,5 +27,5 @@ var server = http.createServer(function(req, res) {
   });
 });
 
-console.log("listening on port 5050");
-server.listen(5050);
+console.log(`listening on port ${port}`);
+server.listen(port);
