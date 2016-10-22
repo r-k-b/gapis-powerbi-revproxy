@@ -1,0 +1,16 @@
+{
+  "name": "@r-k-b/gapis-powerbi-revproxy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Robert K. Bell <robert.k.bell@gmail.com> (https://github.com/r-k-b)",
+  "license": "ISC",
+  "dependencies": {
+    "http": "0.0.0",
+    "http-proxy": "1.15.1",
+    "node-http-proxy": "0.2.3"
+  }
+}
