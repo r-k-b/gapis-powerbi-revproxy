@@ -16,8 +16,10 @@ var proxy = httpProxy.createProxyServer({});
 var server = http.createServer(function(req, res) {
   // You can define here your custom logic to handle the request
   // and then proxy the request.
-  if (req.method === 'GET' || !req.headers.authorization) {
+  let cameFromMCode = !!req.headers['X-Request-Code-Source'];
 
+  if (req.method === 'GET' || !cameFromMCode) {
+    console.info('headers:', req.headers);
     res.writeHead(200, {"Content-Type": "application/json"});
     res.end(JSON.stringify({
       answer:'hi.',
