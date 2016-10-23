@@ -8,7 +8,9 @@ const port = process.env.PORT || 5050;
 //
 // Create a proxy server with custom application logic
 //
-var proxy = httpProxy.createProxyServer({});
+var proxy = httpProxy.createProxyServer({
+    changeOrigin: true,
+});
 
 //
 // Create your custom server and just call `proxy.web()` to proxy
