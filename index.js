@@ -16,8 +16,15 @@ var proxy = httpProxy.createProxyServer({});
 // also you can use `proxy.ws()` to proxy a websockets request
 //
 var server = http.createServer(function (req, res) {
-  // You can define here your custom logic to handle the request
-  // and then proxy the request.
+
+  res.oldWriteHead = res.writeHead;
+  res.writeHead = function(statusCode, headers) {
+    if(statusCode === 404) {
+      res.oldWriteHead(200, headers);
+      return;
+    }
+    res.oldWriteHead(statusCode, headers);
+  };
 
   proxy.web(req, res, {
     target: 'https://www.googleapis.com/oauth2/v4/token',
@@ -36,14 +43,14 @@ proxy.on('proxyReq', function (proxyReq, req, res, options) {
 proxy.on('proxyRes', function (proxyReq, req, res, options) {
   console.info('proxyRes event');
 
-  if (proxyReq.statusCode === 404) {
-    console.info('404\'d req headers:', req.headers);
-    res.writeHead(200, {"Content-Type": "application/json"});
-    res.end(JSON.stringify({
-      answer:'hi.',
-      access_token:'nope.'
-    }, null, 2));
-  }
+  // if (proxyReq.statusCode === 404) {
+  //   console.info('404\'d req headers:', req.headers);
+  //   res.writeHead(200, {"Content-Type": "application/json"});
+  //   res.end(JSON.stringify({
+  //     answer:'hi.',
+  //     access_token:'nope.'
+  //   }, null, 2));
+  // }
 });
 
 
