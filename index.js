@@ -21,7 +21,7 @@ var server = http.createServer(function (req, res) {
 
   res.oldWriteHead = res.writeHead;
   res.writeHead = function(statusCode, headers) {
-    if(statusCode === 404) {
+    if(statusCode === 404 || statusCode === 401) {
       res.oldWriteHead(200, headers);
       return;
     }
