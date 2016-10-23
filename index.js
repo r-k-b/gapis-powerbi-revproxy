@@ -27,7 +27,7 @@ var server = http.createServer(function (req, res) {
   };
 
   proxy.web(req, res, {
-    target: 'https://www.googleapis.com/oauth2/v4/token',
+    target: 'https://www.googleapis.com/',
     secure: false,
   });
 });
